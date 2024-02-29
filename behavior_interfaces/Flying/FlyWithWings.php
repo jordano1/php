@@ -2,10 +2,10 @@
 
 include "./behavior_interfaces/FlyBehavior.php";
 
-class FlyWithWings implements FlyWithWings
+class FlyWithWings implements FlyBehavior
 {
     public function fly()
     {
-        echo "Flying...\n";
+        echo "i'm friggin Flying here!...\n";
     }
 }

@@ -1,37 +1,31 @@
 <?php
-
-include "CyborgDuck.php";
-include "MallardDuck.php";
-include "RubberDuck.php";
-include "DecoyDuck.php";
+include "./behavior_interfaces/Quacking/Quack.php";
+include "./behavior_interfaces/Flying/FlyWithWings.php";
 
 class Duck
 {
-    public function swim()
+    public $quackBehavior;
+    public $flyBehavior;
+
+    public function __construct(QuackBehavior $quackBehavior, FlyBehavior $flyBehavior)
     {
-        echo "swimming...\n";
+        $this->quackBehavior = $quackBehavior;
+        $this->flyBehavior = $flyBehavior;
     }
 
-    public function quack()
+    public function performQuack()
     {
-        echo "quack...\n";
+        $this->quackBehavior->quack();
     }
 
-    public function display()
+    public function performFly()
     {
-        echo "This is a duck...\n";
+        $this->flyBehavior->fly();
     }
 }
 
-$duck = new Duck();
-$duck->quack();
-
-$mallard = new MallardDuck();
-$mallard->display();
-
-$cyborg = new CyborgDuck();
-$cyborg->display();
-
-$decoy = new DecoyDuck();
-$decoy->display();
-$decoy->noFly();
+$quackBehavior = new Quack();
+$flyBehavior = new FlyWithWings();
+$duck = new Duck($quackBehavior, $flyBehavior);
+$duck->performQuack();
+$duck->performFly();

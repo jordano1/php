@@ -1,10 +1,10 @@
 <?php
 include "./behavior_interfaces/QuackBehavior.php";
 
-class Quack implements QuackBehavior
+class MuteQuack implements QuackBehavior
 {
     public function quack()
     {
-        echo "i'm friggen quackin' here!\n";
+        echo "cannot quack!\n";
     }
 }

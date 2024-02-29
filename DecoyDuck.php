@@ -1,32 +1,26 @@
 <?php
 
-include "./behavior_interfaces/Flying/FlyNoWay.php";
 include "./behavior_interfaces/Quacking/Squeak.php";
+include "./behavior_interfaces/Flying/FlyNoWay.php";
 
 class DecoyDuck
 {
+    public $quackBehavior;
+    public $flyBehavior;
 
-    private $flyBehavior;
-    private $quackBehavior;
-
-    public function __construct()
+    public function __construct(QuackBehavior $quackBehavior, FlyBehavior $flyBehavior)
     {
-        $this->flyBehavior = new FlyNoWay();
-        $this->quackBehavior = new Squeak();
+        $this->quackBehavior = $quackBehavior;
+        $this->flyBehavior = $flyBehavior;
     }
 
-    public function noFly()
-    {
-        $this->flyBehavior->fly();
-    }
-
-    public function performQuack()
+    public function quackBehavior()
     {
         $this->quackBehavior->quack();
     }
-
-    public function display()
-    {
-        echo "decoy duck...";
-    }
 }
+
+$flyBehavior = new FlyNoWay();
+$quackBehavior = new Squeak();
+$decoyDuck = new DecoyDuck($quackBehavior, $flyBehavior);
+$decoyDuck->quackBehavior();

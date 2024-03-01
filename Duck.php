@@ -1,31 +1,32 @@
 <?php
-include "./behavior_interfaces/Quacking/Quack.php";
-include "./behavior_interfaces/Flying/FlyWithWings.php";
+
+include "./behaviors/flying_classes/FlyNoWay.php";
+include "./behaviors/quacking_classes//MuteQuack.php";
 
 class Duck
 {
-    public $quackBehavior;
     public $flyBehavior;
+    public $quackBehavior;
 
-    public function __construct(QuackBehavior $quackBehavior, FlyBehavior $flyBehavior)
+    public function __construct(QuackBehavior $quackBehavior, flyBehavior $flyBehavior)
     {
         $this->quackBehavior = $quackBehavior;
         $this->flyBehavior = $flyBehavior;
     }
 
-    public function performQuack()
-    {
-        $this->quackBehavior->quack();
-    }
-
-    public function performFly()
+    public function flyBehavior()
     {
         $this->flyBehavior->fly();
     }
+
+    public function quackBehavior()
+    {
+        $this->quackBehavior->quack();
+    }
 }
 
-$quackBehavior = new Quack();
-$flyBehavior = new FlyWithWings();
+$quackBehavior = new MuteQuack();
+$flyBehavior = new FlyNoWay();
 $duck = new Duck($quackBehavior, $flyBehavior);
-$duck->performQuack();
-$duck->performFly();
+$duck->flyBehavior();
+$duck->quackBehavior();

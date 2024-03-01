@@ -1,11 +1,11 @@
 <?php
 
-include "./behavior_interfaces/FlyBehavior.php";
+include "./behaviors/FlyBehavior.php";
 
 class FlyNoWay implements FlyBehavior
 {
     public function fly()
     {
-        echo "cannot fly...\n";
+        echo "no flying \n";
     }
 }
